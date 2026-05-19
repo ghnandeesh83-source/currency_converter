@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Planet, Orbit, Star } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 
 const locations = [
   { id: 'earth', name: '🌍 Earth', rate: 1, resource: 'USD', color: 'from-blue-500 to-green-500' },

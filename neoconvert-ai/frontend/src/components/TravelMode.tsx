@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Plane, MapPin, Wallet, Coffee, Hotel, Car, Utensils, Info } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 interface CountryData {
   name: string;

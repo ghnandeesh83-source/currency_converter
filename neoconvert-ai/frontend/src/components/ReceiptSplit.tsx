@@ -4,7 +4,7 @@ import { Receipt, Users, Plus, Trash2, Divide, Wallet } from 'lucide-react';
 import axios from 'axios';
 import { WORLD_CURRENCIES } from '../constants/currencies';
 
-const API_URL = 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 interface Person {
   id: string;

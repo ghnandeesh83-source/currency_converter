@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { Accessibility, Volume2, VolumeX, Type, Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
 import { WORLD_CURRENCIES } from '../constants/currencies';
-
-const API_URL = 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 const AccessibilityMode: React.FC = () => {
   const [amount, setAmount] = useState<string>('1000');
@@ -46,8 +45,6 @@ const AccessibilityMode: React.FC = () => {
   };
 
   const textSize = largeText ? 'text-2xl' : 'text-base';
-  const contrastClass = highContrast ? 'bg-white text-black' : 'bg-black/30 text-white';
-
   return (
     <div className="space-y-6">
       <motion.div

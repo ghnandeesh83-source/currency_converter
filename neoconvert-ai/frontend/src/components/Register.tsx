@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { UserPlus, ArrowRight, ShieldCheck, User, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { API_BASE } from '../config/api';
 
 interface RegisterProps {
   onRegister: (user: any) => void;
@@ -40,7 +41,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
 
     try {
       const axios = await import('axios').then(m => m.default);
-      const response = await axios.post('http://localhost:5000/api/register', {
+      const response = await axios.post(`${API_BASE}/api/register`, {
         name,
         email,
         password,

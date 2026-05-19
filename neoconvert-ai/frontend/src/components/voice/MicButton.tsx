@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 
 interface MicButtonProps {

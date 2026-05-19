@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Check, X, AlertTriangle, Zap } from 'lucide-react';
+import { Bot, Check, X, AlertTriangle } from 'lucide-react';
 
 const AutonomousAgent: React.FC = () => {
   const [rules, setRules] = useState([
@@ -9,8 +9,8 @@ const AutonomousAgent: React.FC = () => {
     { id: 3, condition: 'Market volatility > 5%', action: 'Block conversion', active: false },
   ]);
 
-  const [trustScore, setTrustScore] = useState(85);
-  const [pendingApprovals, setPendingApprovals] = useState([
+  const [trustScore] = useState(85);
+  const [pendingApprovals] = useState([
     { id: 1, amount: '₹50,000', from: 'INR', to: 'USD', reason: 'Rate favorable' },
   ]);
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogIn, ArrowRight, ShieldCheck, Mail, Lock, Eye, EyeOff, UserPlus } from 'lucide-react';
+import { API_BASE } from '../config/api';
 
 interface LoginProps {
   onLogin: (user: any) => void;
@@ -27,7 +28,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
 
     try {
       const response = await import('axios').then(m => 
-        m.default.post('http://localhost:5000/api/login', {
+        m.default.post(`${API_BASE}/api/login`, {
           email,
           password
         })

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Globe2, DollarSign, Euro, PoundSterling, IndianRupee } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 interface Country {
   name: string;

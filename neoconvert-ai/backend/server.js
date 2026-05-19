@@ -16,8 +16,10 @@ const jwt = require('jsonwebtoken');
 dotenv.config();
 
 const app = express();
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: [FRONTEND_URL, 'http://localhost:3000', 'http://127.0.0.1:3000'],
   credentials: true
 }));
 app.use(express.json());
@@ -99,7 +101,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID || 'demo-client-id',
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'demo-client-secret',
-  callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5000/auth/google/callback'
+  callbackURL: process.env.GOOGLE_CALLBACK_URL || `${BACKEND_URL}/auth/google/callback`
 },
 (accessToken, refreshToken, profile, done) => {
   // Create or find user
@@ -741,7 +743,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 // Google OAuth callback
 app.get('/auth/google/callback',
   passport.authenticate('google', { 
-    failureRedirect: 'http://localhost:3000?error=auth_failed',
+    failureRedirect: `${FRONTEND_URL}?error=auth_failed`,
     session: true
   }),
   (req, res) => {
@@ -750,12 +752,12 @@ app.get('/auth/google/callback',
       req.session.save((err) => {
         if (err) {
           console.error('Session save error:', err);
-          return res.redirect('http://localhost:3000?error=session_failed');
+          return res.redirect(`${FRONTEND_URL}?error=session_failed`);
         }
-        res.redirect('http://localhost:3000?auth=success');
+        res.redirect(`${FRONTEND_URL}?auth=success`);
       });
     } else {
-      res.redirect('http://localhost:3000?error=no_user');
+      res.redirect(`${FRONTEND_URL}?error=no_user`);
     }
   }
 );
@@ -897,4 +899,5 @@ httpServer.on('error', (err) => {
   console.error(err);
   process.exit(1);
 });
+
 

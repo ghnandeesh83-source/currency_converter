@@ -20,6 +20,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import FloatingAssistant from './components/FloatingAssistant';
 import axios from 'axios';
+import { API_BASE } from './config/api';
 
 export type AppMode = 'converter' | 'twin' | 'universal' | 'space' | 'reality' | 'agent' | 'bio' | 'quantum' | 'ethical' | 'travel' | 'costofliving' | 'receiptsplit' | 'accessibility' | 'currencymap';
 
@@ -50,7 +51,7 @@ const App: React.FC = () => {
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/user', { withCredentials: true });
+      const response = await axios.get(`${API_BASE}/api/user`, { withCredentials: true });
       if (response.data.success && response.data.user) {
         setUser(response.data.user);
       }
@@ -71,7 +72,7 @@ const App: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:5000/api/logout', {}, { withCredentials: true });
+      await axios.post(`${API_BASE}/api/logout`, {}, { withCredentials: true });
       setUser(null);
     } catch (error) {
       console.error('Logout failed:', error);

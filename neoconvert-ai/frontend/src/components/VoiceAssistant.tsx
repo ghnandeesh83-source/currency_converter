@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Mic, MicOff, Volume2, RotateCcw } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE } from '../config/api';
 
 interface VoiceAssistantProps {
   onResponse?: (response: string) => void;
@@ -68,7 +69,7 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ onResponse }) => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/twin', {
+      const res = await axios.post(`${API_BASE}/api/twin`, {
         message: transcript,
         context: { source: 'voice' }
       });

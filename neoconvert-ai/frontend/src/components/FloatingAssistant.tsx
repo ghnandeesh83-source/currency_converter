@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, Send, Mic, X } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE } from '../config/api';
 
 type ChatMessage = { role: 'user' | 'assistant'; text: string };
 const SUGGESTED_QUESTIONS = [
@@ -43,7 +44,7 @@ const FloatingAssistant: React.FC = () => {
     setMessages((prev) => [...prev, { role: 'user', text: question }]);
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/assistant', { question });
+      const res = await axios.post(`${API_BASE}/api/assistant`, { question });
       const answer = res.data?.data?.answer || 'Sorry, I could not answer that.';
       setMessages((prev) => [...prev, { role: 'assistant', text: answer }]);
       speak(answer);

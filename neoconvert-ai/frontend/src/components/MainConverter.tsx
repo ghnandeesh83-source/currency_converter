@@ -5,7 +5,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { WORLD_CURRENCIES } from '../constants/currencies';
 
-const API_URL = 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 const MainConverter: React.FC = () => {
   const [amount, setAmount] = useState<string>('1000');
